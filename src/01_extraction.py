@@ -27,19 +27,10 @@ loops_df = pd.read_csv(
 )
 
 
-def load_bw_region(
-    bw: "pb.BigWigFile", chrom: str, start: int, end: int
-) -> np.ndarray:
-    """Return the value array from all intervals in the requested region"""
-    intervals = bw.intervals(chrom, start, end)
-    coverage = [i[2] for i in intervals]
-    return coverage
-
-
 # Save the track of each each histone mark into a separate column
 for m, bw in bigwigs.items():
     loops_df[m] = loops_df.apply(
-        lambda row: load_bw_region(bw, row.chrom, row.start, row.end), axis=1
+        lambda row: bw.values(row.chrom, row.start, row.end), axis=1
     )
 
 
