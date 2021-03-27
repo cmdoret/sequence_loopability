@@ -1,0 +1,11 @@
+md5: 2676f2fa070554da9f390b1c78e8e60a
+frozen: true
+deps:
+- path: pretrained/dna2vec-20161219-0153-k3to8-100d-10c-29320Mbp-sliding-Xat.w2v
+  repo:
+    url: https://github.com/pnpnpn/dna2vec
+    rev_lock: 87f9c266cff3aace21e3928a14000b3a0d05ed39
+outs:
+- md5: 1d7f5254c3aaa49581d4bd35bb795093
+  size: 84042299
+  path: dna2vec-20161219-0153-k3to8-100d-10c-29320Mbp-sliding-Xat.w2v
