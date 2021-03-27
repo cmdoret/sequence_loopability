@@ -27,5 +27,13 @@ dvc pull
 ## Workflow
 
 Code changes are managed via `git`. Data changes are managed via `dvc`, which is connected to a google drive folder.
-
-When modifying or adding new datafiles in the `data` folder, just use `dvc add` and `dvc push` to upload them.
+When modifying or adding new datafiles in the `data` folder, the modifications must be uploaded to the dvc server.
+The updated small tracker file (`.dvc`) must be commited to git to keep track of changes.
+The standard process is as follows:
+```bash
+dvc add data/newfile.txt
+dvc push
+git add data/newfile.txt.dvc
+git commit -m 'added new file'
+git push
+```
