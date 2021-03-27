@@ -1,0 +1,10 @@
+numpy
+pandas
+pyBigWig
+dvc[gdrive]
+scikit-learn
+scipy
+matplotlib
+seaborn
+tensorflow
+biopython

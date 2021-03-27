@@ -1,6 +1,10 @@
-.PHONY: setup
+.PHONY: setup deps data
 
-# TODO: Use dvc to manage datasets
+deps:
+	python -m pip install -r requirements.txt
 
 setup:
 	python -m pip install -e .
+
+data:
+	dvc pull
