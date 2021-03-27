@@ -12,23 +12,23 @@ normcov_dir = data_dir / "out/chip/cov/norm"
 loops_bed = data_dir / "input/hic/loops.bed"
 genome_file = data_dir / "input/genome/saccer3_sgd_2mu.fa"
 # Outputs:
-out_file = data_dir / "out/chip/cov/merged.pkl"
+out_file = data_dir / "out/loops_merged.pkl"
 
 # Open all bigwigs and store filehandles in a dict
 bigwigs = {}
 for bw in normcov_dir.glob("*bw"):
     mark = bw.with_suffix("").name.split("_")[1]
-    bigwigs[mark] = pb.open(bw, "r")
+    bigwigs[mark] = pb.open(str(bw))
 
 # Loop on all loop anchors, and extract coverage from
 # each bigwig in the regions.
-loops_df = pd.DataFrame(
+loops_df = pd.read_csv(
     loops_bed, sep="\t", names=["chrom", "start", "end", "status"]
 )
 
 
 def load_bw_region(
-    bw: pb.BigWigFile, chrom: str, start: int, end: int
+    bw: "pb.BigWigFile", chrom: str, start: int, end: int
 ) -> np.ndarray:
     """Return the value array from all intervals in the requested region"""
     intervals = bw.intervals(chrom, start, end)
@@ -44,8 +44,10 @@ for m, bw in bigwigs.items():
 
 
 # Retrieve DNA sequence in the interval of each loop anchor
-fa = pyfastx.Fasta(genome_file)
-loops_df["seq"] = loops_df.apply(lambda r: fa.fetch(r.chrom, r.start, r.end))
+fa = pyfastx.Fasta(str(genome_file))
+loops_df["seq"] = loops_df.apply(
+    lambda r: fa.fetch(r.chrom, (r.start, r.end)), axis=1
+)
 
 # Save table as a pickle (binary) file
 with open(out_file, "wb") as fd:
