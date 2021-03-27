@@ -11,6 +11,11 @@ Investigating the sequence features underlying chromatin loops.
 
 ## Setup:
 
+All dependencies can be installed using:
+```bash
+make deps
+```
+
 To make `seqloops` importable in python scripts and notebooks, you can run: `make setup`.
 
 All input and output data are managed via dvc. They can be imported as follows:
@@ -21,4 +26,6 @@ dvc pull
 
 ## Workflow
 
-Code changes are managed via `git`, data changes are managed via `dvc`.
+Code changes are managed via `git`. Data changes are managed via `dvc`, which is connected to a google drive folder.
+
+When modifying or adding new datafiles in the `data` folder, just use `dvc add` and `dvc push` to upload them.

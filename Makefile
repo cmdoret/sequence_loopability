@@ -5,6 +5,3 @@ deps:
 
 setup:
 	python -m pip install -e .
-
-data:
-	dvc pull
