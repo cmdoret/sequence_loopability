@@ -44,9 +44,10 @@ for m, bw in bigwigs.items():
 
 
 # Retrieve DNA sequence in the interval of each loop anchor
+# NOTE: Unlike bigwig, pyfastx uses 1-based coords, hence the +1 below.
 fa = pyfastx.Fasta(str(genome_file))
 loops_df["seq"] = loops_df.apply(
-    lambda r: fa.fetch(r.chrom, (r.start, r.end)), axis=1
+    lambda r: fa.fetch(r.chrom, (r.start + 1, r.end + 1)), axis=1
 )
 
 # Save table as a pickle (binary) file

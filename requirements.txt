@@ -1,6 +1,7 @@
 numpy
 pandas
 pyBigWig
+pyfastx
 dvc[gdrive]
 scikit-learn
 scipy
