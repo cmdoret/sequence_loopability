@@ -31,9 +31,9 @@ When modifying or adding new datafiles in the `data` folder, the modifications m
 The updated small tracker file (`.dvc`) must be commited to git to keep track of changes.
 The standard process is as follows:
 ```bash
-dvc add data/newfile.txt
+dvc add data
 dvc push
-git add data/newfile.txt.dvc
+git add data.dvc
 git commit -m 'added new file'
 git push
 ```
