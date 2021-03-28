@@ -1,10 +1,10 @@
-!/usr/bin/env bash
+#!/usr/bin/env bash
 # Use all bams in input directory to generate coverage (bigwig) files
 # normalized by their respective controls (input) and library size
 # Requires deeptools and a design.csv as used in nf-core pipelines
 # cmdoret, 20210327
 
-BAM_DIR='data/out/chip/bam'
+BAM_DIR='data/input/chip/bam'
 OUT_DIR='data/out/chip/cov'
 DESIGN='data/input/chip/design.csv'
 mkdir -p "${OUT_DIR}"/norm
