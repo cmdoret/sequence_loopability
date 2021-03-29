@@ -20,8 +20,8 @@ from seqloops.data_loaders import SequenceIngester
 
 # Inputs
 genome_infile = cfg.genome
-tokenizer_outfile = cfg.tokenizer
 # Outputs
+tokenizer_outfile = cfg.tokenizer
 embedding_outfile = cfg.embedding
 
 # Important parameters for tokenization and embedding
@@ -41,8 +41,7 @@ bpe_trainer = tok.trainers.BpeTrainer(
     vocab_size=vocab_size, min_frequency=min_word_count
 )
 tokenizer.train_from_iterator(
-    SequenceIngester(genome_infile),
-    trainer=bpe_trainer,
+    SequenceIngester(str(genome_infile)), trainer=bpe_trainer,
 )
 
 # Save tokenizer model for potential future use
@@ -50,7 +49,7 @@ tokenizer.save(str(tokenizer_outfile), pretty=True)
 
 # This ingester yields the tokenized chunks
 token_ingester = SequenceIngester(
-    genome_infile, func=lambda x: tokenizer.encode(x).tokens
+    str(genome_infile), func=lambda x: tokenizer.encode(x).tokens
 )
 
 # Learn embedding vectors on genome

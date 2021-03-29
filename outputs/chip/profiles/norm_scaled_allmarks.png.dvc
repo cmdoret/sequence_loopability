@@ -1,0 +1,4 @@
+outs:
+- md5: 37301be0e508cb93670602e0e8c3997a
+  size: 556920
+  path: norm_scaled_allmarks.png

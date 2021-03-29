@@ -8,13 +8,12 @@ from pathlib import Path
 
 # General directories
 data_dir = Path(__file__).parents[1] / "data"
-in_dir = data_dir / "input"
-out_dir = data_dir / "out"
+out_dir = Path(__file__).parents[1] / "outputs"
 
 # Commonly used files
-genome = in_dir / "genome" / "saccer3_sgd_2mu.fa"
-tokenizer = in_dir / "embeddings" / "yeast_bpe_tokenizer.json"
-embedding = in_dir / "embeddings" / "yeast_w2v_embedding.vec"
-loops_bed = in_dir / "hic" / "loops.bed"
+genome = data_dir / "genome" / "saccer3_sgd_2mu.fa"
+loops_bed = data_dir / "hic" / "loops.bed"
+tokenizer = out_dir / "embeddings" / "yeast_bpe_tokenizer.json"
+embedding = out_dir / "embeddings" / "yeast_w2v_embedding.vec"
 loops_extracted = out_dir / "loops_extracted.pkl"
 features = out_dir / "loops_features.pkl"

@@ -1,0 +1,18 @@
+stages:
+  extract:
+    cmd: python ./src/01_extraction.py
+    deps:
+    - data/genome/saccer3_sgd_2mu.fa
+    - data/hic/loops.bed
+    - outputs/chip/cov/norm
+    - src/01_extraction.py
+    outs:
+    - outputs/loops_extracted.pkl
+  embedding:
+    cmd: python ./src/00_train_embedding.py
+    deps:
+    - data/genome/saccer3_sgd_2mu.fa
+    - src/00_train_embedding.py
+    outs:
+    - outputs/embeddings/yeast_bpe_tokenizer.json
+    - outputs/embeddings/yeast_w2v_embedding.vec
