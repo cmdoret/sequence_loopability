@@ -4,7 +4,7 @@ stages:
     deps:
     - data/genome/saccer3_sgd_2mu.fa
     - data/hic/loops.bed
-    - outputs/chip/cov/norm
+    - data/chip/cov/norm
     - src/01_extraction.py
     outs:
     - outputs/loops_extracted.pkl

@@ -25,12 +25,12 @@ w2v = KeyedVectors.load_word2vec_format(embedding_infile, binary=False)
 # Tokenize input loops and compute their embedding vectors as the sum of
 # their embedding tokens
 tokenizer = tok.Tokenizer(tok.models.BPE())
-tokenizer.from_file(tokenizer_infile)
+tokenizer = tokenizer.from_file(str(tokenizer_infile))
 
 # Load and encode input sequences with precomputed embedding
 loops = pickle.load(open(loops_seq_infile, "rb"))
 # Each sequence becomes a list of string tokens
-encoded = tokenizer.encode_batch(loops.seq)
+encoded = loops.seq.apply(lambda s: tokenizer.encode(s).tokens)
 
 
 def embed(seq: List[str]) -> np.ndarray:

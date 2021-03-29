@@ -5,13 +5,12 @@ import pandas as pd
 import pickle
 import pyBigWig as pb
 import pyfastx
-from seqloops.config import data_dir
 import seqloops.config as cfg
 
 # Inputs:
 genome_infile = cfg.genome
 loops_bed_infile = cfg.loops_bed
-normcov_dir = cfg.out_dir / "chip" / "cov" / "norm"
+normcov_dir = cfg.data_dir / "chip" / "cov" / "norm"
 # Outputs:
 loops_seq_outfile = cfg.loops_extracted
 

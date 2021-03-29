@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # List of commands used to plot profiles
 # Bigwig files must have been generated
 # Requires deeptools.
@@ -5,9 +6,9 @@
 
 # Should contain norm and inputs subfolders
 # norm contains input-normalized bigwigs, inputs contains inputs bigwigs
-IN_DIR='data/out/chip/cov'
-OUT_DIR='data/out/chip/profiles'
-GENES='data/input/genome/saccer3_sgd_genes.bed'
+IN_DIR='data/chip/cov'
+OUT_DIR='data/chip/profiles'
+GENES='data/genome/saccer3_sgd_genes.bed'
 mkdir -p ${OUT_DIR}
 
 # Normalized histone mark coverage scaled by gene body (nucleosomes not aligned)
@@ -24,7 +25,6 @@ plotProfile -m ${OUT_DIR}/norm_scaled_allmarks.mat.gz \
     -out ${OUT_DIR}/norm_scaled_allmarks.png \
     --numPlotsPerRow 4 \
     --plotTitle "All marks, input-normalized, scaled, whole genome"
-
 
 # Nucleosome occupancy (input signal, not scaled to gene body)
 computeMatrix reference-point -p 10 \
