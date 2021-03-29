@@ -6,13 +6,14 @@ import pickle
 import pyBigWig as pb
 import pyfastx
 from seqloops.config import data_dir
+import seqloops.config as cfg
 
 # Inputs:
-normcov_dir = data_dir / "out/chip/cov/norm"
-loops_bed = data_dir / "input/hic/loops.bed"
-genome_file = data_dir / "input/genome/saccer3_sgd_2mu.fa"
+genome_infile = cfg.genome
+loops_bed_infile = cfg.loops_bed
+normcov_dir = str(cfg.out_dir / "chip" / "cov" / "norm")
 # Outputs:
-out_file = data_dir / "out/loops_merged.pkl"
+loops_seq_outfile = cfg.loops_extracted
 
 # Open all bigwigs and store filehandles in a dict
 bigwigs = {}
@@ -23,7 +24,7 @@ for bw in normcov_dir.glob("*bw"):
 # Loop on all loop anchors, and extract coverage from
 # each bigwig in the regions.
 loops_df = pd.read_csv(
-    loops_bed, sep="\t", names=["chrom", "start", "end", "status"]
+    loops_bed_infile, sep="\t", names=["chrom", "start", "end", "status"]
 )
 
 
@@ -36,11 +37,11 @@ for m, bw in bigwigs.items():
 
 # Retrieve DNA sequence in the interval of each loop anchor
 # NOTE: Unlike bigwig, pyfastx uses 1-based coords, hence the +1 below.
-fa = pyfastx.Fasta(str(genome_file))
+fa = pyfastx.Fasta(str(genome_infile))
 loops_df["seq"] = loops_df.apply(
     lambda r: fa.fetch(r.chrom, (r.start + 1, r.end + 1)), axis=1
 )
 
 # Save table as a pickle (binary) file
-with open(out_file, "wb") as fd:
+with open(loops_seq_outfile, "wb") as fd:
     pickle.dump(loops_df, fd)
