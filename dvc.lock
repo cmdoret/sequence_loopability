@@ -3,19 +3,19 @@ stages:
   extract:
     cmd: python ./src/01_extraction.py
     deps:
+    - path: data/chip/cov/norm
+      md5: f013c1781789f57d1a4332f301d60884.dir
+      size: 2423115006
+      nfiles: 28
     - path: data/genome/saccer3_sgd_2mu.fa
       md5: 844239f437f058f7da5dda8c09462679
       size: 12366275
     - path: data/hic/loops.bed
       md5: 5ab0ba742f123dd8afd06487420528d2
       size: 16570
-    - path: outputs/chip/cov/norm
-      md5: 198c1851b8bdc85d976d7ce819760f2b.dir
-      size: 2423117404
-      nfiles: 55
     - path: src/01_extraction.py
-      md5: 1655cf51eb4c2990b830a6e71daa3601
-      size: 1380
+      md5: c8ee709fcfc3878325c6591952565d3e
+      size: 1344
     outs:
     - path: outputs/loops_extracted.pkl
       md5: 96dee711e35321abd9a6e0616915a72d
@@ -27,12 +27,12 @@ stages:
       md5: 844239f437f058f7da5dda8c09462679
       size: 12366275
     - path: src/00_train_embedding.py
-      md5: f6fb2e9347f18c821a624ccfba5e5815
-      size: 2404
+      md5: d2a9b08712babb70638d240f3ce9e3a2
+      size: 2405
     outs:
     - path: outputs/embeddings/yeast_bpe_tokenizer.json
       md5: fba56ddaaa1fddde99001fd1a73fe23d
       size: 1061082
     - path: outputs/embeddings/yeast_w2v_embedding.vec
-      md5: 9b942fe30cbb7482bb71697ae87c20c3
-      size: 48143444
+      md5: fe6a960ca0c85cb5a18e2a5bf9bc7c60
+      size: 48136339

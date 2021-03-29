@@ -38,7 +38,7 @@ min_word_count = 10
 # sequences (bytepairs) are merged until target vocab size is reached.
 tokenizer = tok.Tokenizer(tok.models.BPE())
 bpe_trainer = tok.trainers.BpeTrainer(
-    vocab_size=vocab_size, min_frequency=min_word_count
+    vocab_size=vocab_size, min_frequency=min_word_count,
 )
 tokenizer.train_from_iterator(
     SequenceIngester(str(genome_infile)), trainer=bpe_trainer,

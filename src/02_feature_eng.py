@@ -5,7 +5,6 @@ includes summary statistics, embedded sequences, etc...
 import pickle
 from typing import List
 import numpy as np
-import pandas as pd
 from scipy.stats import entropy
 import tokenizers as tok
 from gensim.models import KeyedVectors
@@ -33,17 +32,21 @@ loops = pickle.load(open(loops_seq_infile, "rb"))
 encoded = loops.seq.apply(lambda s: tokenizer.encode(s).tokens)
 
 
-def embed(seq: List[str]) -> np.ndarray:
+def average_embedding(seq: List[str]) -> np.ndarray:
     """Average embedding vectors of all words in the sequence"""
-    vec = np.zeros(w2v.get_vector(seq[0]).shape)
+    vec = np.zeros(w2v.vector_size)
+    valid_words = 0
+    # Ignore words if they are absent
     for word in seq:
-        vec += w2v.get_vector(word)
-    vec /= len(seq)
+        if w2v.has_index_for(word):
+            vec += w2v.get_vector(word)
+            valid_words += 1
+    vec /= valid_words
     return vec
 
 
 # Convert tokens to their embedding vectors
-loops["embedding"] = [embed(seq) for seq in encoded]
+loops["embedding"] = [average_embedding(seq) for seq in encoded]
 
 # Transforming and standardizing features to analyze later on.
 
@@ -57,5 +60,6 @@ loops["entropy"] = loops.seq.apply(
         [x.count(base) / len(x) for base in ["A", "C", "T", "G"]]
     )
 )
+with open(features_outfile, "wb") as fd:
+    pickle.dump(loops, fd)
 
-# 2 outputs: embedded sequence and extracted features
