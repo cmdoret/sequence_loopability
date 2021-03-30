@@ -36,3 +36,22 @@ stages:
     - path: outputs/embeddings/yeast_w2v_embedding.vec
       md5: fe6a960ca0c85cb5a18e2a5bf9bc7c60
       size: 48136339
+  feature_eng:
+    cmd: python ./src/02_feature_eng.py
+    deps:
+    - path: outputs/embeddings/yeast_bpe_tokenizer.json
+      md5: fba56ddaaa1fddde99001fd1a73fe23d
+      size: 1061082
+    - path: outputs/embeddings/yeast_w2v_embedding.vec
+      md5: fe6a960ca0c85cb5a18e2a5bf9bc7c60
+      size: 48136339
+    - path: outputs/loops_extracted.pkl
+      md5: 96dee711e35321abd9a6e0616915a72d
+      size: 38066901
+    - path: src/02_feature_eng.py
+      md5: ac0ad038c91a1cf38a8a30ec74dacd9e
+      size: 2051
+    outs:
+    - path: outputs/loops_features.pkl
+      md5: 295413cba4bc87612143e77d6caa4389
+      size: 39374637

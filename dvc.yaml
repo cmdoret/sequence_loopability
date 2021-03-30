@@ -16,3 +16,12 @@ stages:
     outs:
     - outputs/embeddings/yeast_bpe_tokenizer.json
     - outputs/embeddings/yeast_w2v_embedding.vec
+  feature_eng:
+    cmd: python ./src/02_feature_eng.py
+    deps:
+    - outputs/embeddings/yeast_bpe_tokenizer.json
+    - outputs/embeddings/yeast_w2v_embedding.vec
+    - outputs/loops_extracted.pkl
+    - src/02_feature_eng.py
+    outs:
+    - outputs/loops_features.pkl
