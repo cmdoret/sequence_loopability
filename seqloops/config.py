@@ -12,7 +12,7 @@ out_dir = Path(__file__).parents[1] / "outputs"
 
 # Commonly used files
 genome = data_dir / "genome" / "saccer3_sgd_2mu.fa"
-loops_bed = data_dir / "hic" / "loops.bed"
+loops_bed = data_dir / "hic" / "loops_tes_ctl.bed"
 tokenizer = out_dir / "embeddings" / "yeast_bpe_tokenizer.json"
 embedding = out_dir / "embeddings" / "yeast_w2v_embedding.vec"
 loops_extracted = out_dir / "loops_extracted.pkl"

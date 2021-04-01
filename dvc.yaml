@@ -3,7 +3,7 @@ stages:
     cmd: python ./src/01_extraction.py
     deps:
     - data/genome/saccer3_sgd_2mu.fa
-    - data/hic/loops.bed
+    - data/hic/loops_tes_ctl.bed
     - data/chip/cov/norm
     - src/01_extraction.py
     outs:

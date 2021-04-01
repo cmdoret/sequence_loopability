@@ -10,15 +10,15 @@ stages:
     - path: data/genome/saccer3_sgd_2mu.fa
       md5: 844239f437f058f7da5dda8c09462679
       size: 12366275
-    - path: data/hic/loops.bed
-      md5: 5ab0ba742f123dd8afd06487420528d2
-      size: 16570
+    - path: data/hic/loops_tes_ctl.bed
+      md5: 46ba9df9823500a6e72712b73d0939f5
+      size: 16577
     - path: src/01_extraction.py
       md5: c8ee709fcfc3878325c6591952565d3e
       size: 1344
     outs:
     - path: outputs/loops_extracted.pkl
-      md5: 96dee711e35321abd9a6e0616915a72d
+      md5: 029bcd578dceaabd8d4c2b3d7d1ffcc1
       size: 38066901
   embedding:
     cmd: python ./src/00_train_embedding.py
@@ -34,8 +34,8 @@ stages:
       md5: fba56ddaaa1fddde99001fd1a73fe23d
       size: 1061082
     - path: outputs/embeddings/yeast_w2v_embedding.vec
-      md5: fe6a960ca0c85cb5a18e2a5bf9bc7c60
-      size: 48136339
+      md5: 2c320cf415e840a05c4dca2bbe036650
+      size: 48140091
   feature_eng:
     cmd: python ./src/02_feature_eng.py
     deps:
@@ -43,15 +43,15 @@ stages:
       md5: fba56ddaaa1fddde99001fd1a73fe23d
       size: 1061082
     - path: outputs/embeddings/yeast_w2v_embedding.vec
-      md5: fe6a960ca0c85cb5a18e2a5bf9bc7c60
-      size: 48136339
+      md5: 2c320cf415e840a05c4dca2bbe036650
+      size: 48140091
     - path: outputs/loops_extracted.pkl
-      md5: 96dee711e35321abd9a6e0616915a72d
+      md5: 029bcd578dceaabd8d4c2b3d7d1ffcc1
       size: 38066901
     - path: src/02_feature_eng.py
       md5: ac0ad038c91a1cf38a8a30ec74dacd9e
       size: 2051
     outs:
     - path: outputs/loops_features.pkl
-      md5: 295413cba4bc87612143e77d6caa4389
+      md5: eec46774e03b5d81c62446f1bc228787
       size: 39374637
