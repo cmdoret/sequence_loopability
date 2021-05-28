@@ -1,11 +1,13 @@
+biopython
+dvc[gdrive]
+gensim
+matplotlib
 numpy
 pandas
 pyBigWig
 pyfastx
-dvc[gdrive]
 scikit-learn
 scipy
-matplotlib
 seaborn
 tensorflow
-biopython
+tokenizers

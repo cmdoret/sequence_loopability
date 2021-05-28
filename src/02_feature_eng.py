@@ -56,10 +56,7 @@ loops["GC_bias"] = loops.seq.apply(
     lambda x: (x.count("G") - x.count("C")) / (x.count("G") + x.count("C"))
 )
 loops["entropy"] = loops.seq.apply(
-    lambda x: entropy(
-        [x.count(base) / len(x) for base in ["A", "C", "T", "G"]]
-    )
+    lambda x: entropy([x.count(base) / len(x) for base in ["A", "C", "T", "G"]])
 )
 with open(features_outfile, "wb") as fd:
     pickle.dump(loops, fd)
-

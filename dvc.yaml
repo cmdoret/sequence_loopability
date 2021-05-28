@@ -4,6 +4,7 @@ stages:
     deps:
     - data/genome/saccer3_sgd_2mu.fa
     - data/hic/loops_tes_ctl.bed
+    - data/control/GAL4_vs_neg.bed
     - data/chip/cov/norm
     - src/01_extraction.py
     outs:
